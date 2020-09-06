@@ -22,12 +22,12 @@ def get_day_name(num):
 
 
 def get_timetable(week_day):
-    week = json.loads(open("json\week.json", "r", encoding="utf-8").read())
+    week = json.loads(open("json/week.json", "r", encoding="utf-8").read())
     parity_days = json.loads(
-        open("json\parity_days.json", "r", encoding="utf-8").read()
+        open("json/parity_days.json", "r", encoding="utf-8").read()
     )
     week_days_ru = json.loads(
-        open("json\week_days_ru.json", "r", encoding="utf-8").read()
+        open("json/week_days_ru.json", "r", encoding="utf-8").read()
     )
     is_week_even = False if (int(datetime.now().strftime("%V")) + 1) % 2 else True
     is_free_day = False
