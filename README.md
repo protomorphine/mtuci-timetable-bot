@@ -1,0 +1,1 @@
+# mtuci-timetable-bot
