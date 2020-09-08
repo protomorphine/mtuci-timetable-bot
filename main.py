@@ -59,12 +59,13 @@ def start_message(message):
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard1.row("Сегодня", "Завтра", "Неделя")
 
-keyboard2 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard2 = telebot.types.ReplyKeyboardMarkup()
 keyboard2.row("Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Назад")
 
 
 @bot.message_handler(content_types=["text"])
 def send_text(message):
+    free_day = False
     week_days_ru = json.loads(
         open("json/week_days_ru.json", "r", encoding="utf-8").read()
     )
