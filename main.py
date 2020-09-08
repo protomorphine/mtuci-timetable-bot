@@ -57,11 +57,17 @@ def start_message(message):
 
 
 keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
-keyboard1.row("Сегодня", "Завтра")
+keyboard1.row("Сегодня", "Завтра", "Неделя")
+
+keyboard2 = telebot.types.ReplyKeyboardMarkup(True)
+keyboard2.row("Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Назад")
 
 
 @bot.message_handler(content_types=["text"])
 def send_text(message):
+    week_days_ru = json.loads(
+        open("json/week_days_ru.json", "r", encoding="utf-8").read()
+    )
     if message.text.lower() == "сегодня":
         today, free_day = get_timetable(
             get_day_name(datetime.isoweekday(datetime.now()))
@@ -72,6 +78,26 @@ def send_text(message):
             get_day_name(datetime.isoweekday(datetime.now() + timedelta(days=1)))
         )
         bot.send_message(message.chat.id, tommorow)
+    elif message.text.lower() == "неделя":
+        bot.send_message(
+            message.chat.id, "Показать расписание на", reply_markup=keyboard2,
+        )
+    elif message.text.lower() == "назад":
+        bot.send_message(
+            message.chat.id,
+            "Привет, я помогу узнать тебе расписание",
+            reply_markup=keyboard1,
+        )
+    else:
+        for key in week_days_ru:
+            if message.text.lower() == week_days_ru[key]:
+                day, free_day = get_timetable(key)
+                bot.send_message(message.chat.id, day)
+            else:
+                bot.send_message(
+                    message.chat.id, "Неизвестный день\nПоказать расписание на "
+                )
+
     if free_day:
         bot.send_sticker(
             message.chat.id,
