@@ -60,7 +60,8 @@ keyboard1 = telebot.types.ReplyKeyboardMarkup(True)
 keyboard1.row("Сегодня", "Завтра", "Неделя")
 
 keyboard2 = telebot.types.ReplyKeyboardMarkup()
-keyboard2.row("Понедельник", "Вторник", "Среду", "Четверг", "Пятницу", "Назад")
+keyboard2.row("Понедельник", "Вторник", "Среду")
+keyboard2.row("Четверг", "Пятницу", "Назад")
 
 
 @bot.message_handler(content_types=["text"])
@@ -81,7 +82,7 @@ def send_text(message):
         bot.send_message(message.chat.id, tommorow)
     elif message.text.lower() == "неделя":
         bot.send_message(
-            message.chat.id, "Показать расписание на", reply_markup=keyboard2,
+            message.chat.id, "Показать расписание на...", reply_markup=keyboard2,
         )
     elif message.text.lower() == "назад":
         bot.send_message(
@@ -90,14 +91,13 @@ def send_text(message):
             reply_markup=keyboard1,
         )
     else:
-        for key in week_days_ru:
-            if message.text.lower() == week_days_ru[key]:
-                day, free_day = get_timetable(key)
-                bot.send_message(message.chat.id, day)
-            else:
-                bot.send_message(
-                    message.chat.id, "Неизвестный день\nПоказать расписание на "
-                )
+        res = ""
+        for elem in week_days_ru:
+            if week_days_ru[elem] == message.text:
+                res = elem
+                break
+        day, free_day = get_timetable(res)
+        bot.send_message(message.chat.id, day)
 
     if free_day:
         bot.send_sticker(
