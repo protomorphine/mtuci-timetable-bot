@@ -31,10 +31,10 @@ def get_timetable(week_day):
     week_days_ru = json.loads(
         open("json/week_days_ru.json", "r", encoding="utf-8").read()
     )
-    is_week_even = False if ((int(datetime.now().strftime("%V")) + 1) % 2 == 0) else True
+    is_week_even = False if ((int(datetime.now().strftime("%V")) + 1) % 2 != 0) else True
     is_free_day = False
 
-    week["thursday"] = parity_days["up"] if is_week_even else parity_days["down"]
+    week["thursday"] = parity_days["down"] if is_week_even else parity_days["up"]
 
     text = f"👨‍🏫 Расписание занятий на {week_days_ru[week_day]}\n"
 
