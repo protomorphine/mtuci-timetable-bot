@@ -1,7 +1,7 @@
 from datetime import datetime
 from datetime import timedelta
 from flask import Flask, request
-import json, telebot
+import json, telebot, os
 
 bot = telebot.TeleBot(
     "1252210950:AAEoxZSkSaBMJkrFdflqnVme1MahMLekgXk", parse_mode="Markdown"
