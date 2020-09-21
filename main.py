@@ -1,10 +1,12 @@
 from datetime import datetime
 from datetime import timedelta
+from flask import Flask, request
 import json, telebot
 
 bot = telebot.TeleBot(
     "1252210950:AAEoxZSkSaBMJkrFdflqnVme1MahMLekgXk", parse_mode="Markdown"
 )
+server = Flask(__name__)
 
 
 def get_day_name(num):
@@ -106,9 +108,20 @@ def send_text(message):
         )
 
 
-@bot.message_handler(content_types=["sticker"])
-def sticker_id(message):
-    print(message)
+@server.route("/bot", methods=["POST"])
+def getMessage():
+    bot.process_new_updates(
+        [telebot.types.Update.de_json(request.stream.read().decode("utf-8"))]
+    )
+    return "!", 200
 
 
-bot.polling()
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url="https://mtuci-raspisanie-bot.herokuapp.com/bot")
+    return "?", 200
+    server.run(host="0.0.0.0", port=os.environ.get("PORT", 80))
+
+
+# bot.polling()
