@@ -121,7 +121,8 @@ def webhook():
     bot.remove_webhook()
     bot.set_webhook(url="https://timetable-tg-bot.herokuapp.com/bot")
     return "?", 200
-    server.run(host="0.0.0.0", port=os.environ.get("PORT", 80))
+
+server.run(host="0.0.0.0", port=os.environ.get("PORT", 80))
 
 
 # bot.polling()
