@@ -1,0 +1,6 @@
+f"""
+*Предмет:* {day[class_]['name']}
+*Тип занятия:* {day[class_]['type']}
+*Место проведения:* {day[class_]['place']}
+Начало в *{day[class_]['time']}*
+"""
