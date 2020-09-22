@@ -2,10 +2,10 @@ from datetime import datetime
 import json
 
 
-TEMPLATE = open("/app/output_template", "r", encoding="utf-8").read()
-WEEK = open("/app/json/week.json", "r", encoding="utf-8").read()
-PARRITY_DAYS = open("/app/json/parity_days.json", "r", encoding="utf-8").read()
-WEEK_DAYS_RU = open("/app/json/week_days_ru.json", "r", encoding="utf-8").read()
+TEMPLATE = open("output_template", "r", encoding="utf-8").read()
+WEEK = open("json/week.json", "r", encoding="utf-8").read()
+PARRITY_DAYS = open("json/parity_days.json", "r", encoding="utf-8").read()
+WEEK_DAYS_RU = open("json/week_days_ru.json", "r", encoding="utf-8").read()
 
 
 def get_day_name(num):
