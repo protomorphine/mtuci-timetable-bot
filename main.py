@@ -74,7 +74,7 @@ def getMessage():
 @webhook_server.route("/")
 def webhook():
     bot.remove_webhook()
-    bot.set_webhook(url="https://timetable-tg-bot.herokuapp.com/bot")
+    bot.set_webhook(url="https://tg-timetable-bot.herokuapp.com/bot")
     return "?", 200
 
 
