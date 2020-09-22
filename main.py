@@ -2,8 +2,8 @@ from datetime import datetime, timedelta
 from flask import Flask, request
 import telebot, os
 
-from ./parse_timetable import *
-from ./telegram_keyboards import *
+from .parse_timetable import *
+from .telegram_keyboards import *
 
 
 TOKEN = "1252210950:AAEoxZSkSaBMJkrFdflqnVme1MahMLekgXk"
