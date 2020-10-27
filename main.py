@@ -6,7 +6,7 @@ from src.parse_timetable import *
 from src.telegram_keyboards import *
 
 
-TOKEN = "1252210950:AAEoxZSkSaBMJkrFdflqnVme1MahMLekgXk"
+TOKEN = ""
 LAZY_STICKER_ID = (
     "CAACAgIAAxkBAANNX1N7fzzCXN0YEcxUdPAZ4s422HYAAmc2AALpVQUYGZMWsaF46GMbBA"
 )
